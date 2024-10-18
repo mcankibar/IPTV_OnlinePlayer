@@ -1,0 +1,71 @@
+﻿@model IPTvOnlinePlayer.Models.Playlist.PlaylistCreateModel
+
+@{
+    ViewBag.Title = "Add a new Playlist";
+    Layout = null;
+}
+<form method="post" onsubmit="return handleSubmit(this)" asp-action="Create" asp-controller="Playlist" enctype="multipart/form-data" class="modal-content" id="add-playlist-form">
+    <div class="modal-header">
+        <h5 class="modal-title" id="backDropModalTitle">Add New Playlist</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <p>The system currently supports uploading categorized playlists. Please make sure that the playlist you upload is categorized!</p>
+        <!-- Name input -->
+        <div class="mb-3">
+            <label for="Name" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter playlist name" asp-for="Name">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <!-- Logo URL input -->
+        <div class="mb-3">
+            <label for="LogoUrl" class="form-label">Logo Url:</label>
+            <input type="text" class="form-control" id="LogoUrl" name="LogoUrl" placeholder="Enter playlist logo url" asp-for="LogoUrl">
+            <span asp-validation-for="LogoUrl" class="text-danger"></span>
+        </div>
+
+        <!-- Display Order input -->
+        <div class="mb-3">
+            <label for="DisplayOrder" class="form-label">Display Order:</label>
+            <input style="width: 33%" type="number" class="form-control" id="DisplayOrder" name="DisplayOrder" placeholder="Enter display order" asp-for="DisplayOrder">
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        </div>
+
+        <!-- File upload/input toggle -->
+        <div class="mb-3" id="fileUpload" style="@(Model.UseUrl ? "display:none;" : "")">
+            <label for="File" class="form-label">Choose .m3u File:</label>
+            <input type="file" class="form-control" id="File" name="File" accept=".m3u" asp-for="File">
+            <span asp-validation-for="File" class="text-danger"></span>
+        </div>
+        <div class="mb-3" id="urlInput" style="@(Model.UseUrl ? "" : "display:none;")">
+            <label for="FileUrl" class="form-label">File URL:</label>
+            <input type="text" class="form-control" id="FileUrl" name="FileUrl" placeholder="Paste the file URL" asp-for="FileUrl">
+            <span asp-validation-for="FileUrl" class="text-danger"></span>
+        </div>
+
+        <!-- Use URL checkbox -->
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="useUrl" name="UseUrl" asp-for="UseUrl">
+            <label class="form-check-label" for="useUrl">Use URL - You can either choose a file or paste a URL here</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+
+<script>
+    document.getElementById("useUrl").addEventListener("change", function() {
+        var fileUpload = $("#fileUpload");
+        var urlInput = $("#urlInput");
+        if (this.checked) {
+            fileUpload.hide();
+            urlInput.show();
+        } else {
+            fileUpload.show();
+            urlInput.hide();
+        }
+    });
+</script>

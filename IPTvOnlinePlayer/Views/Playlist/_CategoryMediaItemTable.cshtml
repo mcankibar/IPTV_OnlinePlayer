@@ -1,0 +1,72 @@
+﻿@model IPTvOnlinePlayer.Models.MediaItem.MediaItemListModel
+
+@{
+    Layout = null;
+}
+
+<div class="table-responsive text-nowrap">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Logo</th>
+            <th>Name</th>
+            <th>Favorite</th>
+            <th>Watch</th>
+        </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+        @if (Model.MediaItems.Any())
+        {
+            foreach (var playlist in Model.MediaItems)
+            {
+                <tr>
+                    <td>
+                        <img width="50px" height="50px" src="@playlist.LogoUrl" alt=""/> 
+                    </td>
+                    <td>@playlist.Name</td>
+                    <td>
+                        <a  class="dropdown-item" id="media-item-unfavorite-@playlist.Id" href="javascript:void(0)" onclick="toggleMediaItemFavorite(@playlist.Id, 'media-item-favorite-@playlist.Id', 'media-item-unfavorite-@playlist.Id')" style="color: darkgreen; @(playlist.Favorite ? "display:none" : "")">
+                            <i class="fa-solid fa-heart-circle-plus me-1"></i> Add to favorite
+                        </a>
+                        <a  class="dropdown-item" id="media-item-favorite-@playlist.Id" href="javascript:void(0)" onclick="toggleMediaItemFavorite(@playlist.Id, 'media-item-unfavorite-@playlist.Id', 'media-item-favorite-@playlist.Id')" style="color: darkred; @(playlist.Favorite ? "" : "display:none")">
+                            <i class="fa-solid fa-heart-circle-minus me-1"></i> Remove from favorite
+                        </a>
+                    </td>
+                    <td>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa-solid fa-eye me-1"></i> Watch
+                        </a
+                        >
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr style="height: 75px">
+                <td colspan="5" class="text-center">You don't have a media item belong selected category, or we lost it</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+function toggleMediaItemFavorite(mediaItemId, targetId, currentId) {
+    
+    $.ajax({
+        url: '@Url.Action("ToggleMediaItemFavorite", "Playlist")',
+        type: 'POST',
+        data: { id: mediaItemId },
+        success: function(response) {
+            if (response.success) {
+                $('#' + currentId).hide();
+                $('#' + targetId).show();
+            }
+        },
+        error: function() {
+        }
+    });
+}
+</script>

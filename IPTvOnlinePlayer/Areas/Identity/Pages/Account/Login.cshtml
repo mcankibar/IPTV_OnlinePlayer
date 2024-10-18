@@ -1,0 +1,67 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <section>
+                    <form id="account" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com"/>
+                            <label asp-for="Input.Email" class="form-label">Email</label>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password"/>
+                            <label asp-for="Input.Password" class="form-label">Password</label>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="checkbox mb-3">
+                            <label asp-for="Input.RememberMe" class="form-label">
+                                <input class="form-check-input" asp-for="Input.RememberMe"/>
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
+                        <div>
+                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                            <a style="margin-top: 15px" asp-page="./Register" class="w-100 btn btn-lg btn-outline-primary" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        </div>
+                    </form>
+                </section>
+            </div>
+            <div class="col-md-6 col-md-offset-2">
+                <section>
+                    <h3>Why i have to login?</h3>
+
+                    <div>
+                        <p>
+                            We are planning to support multiple users in the future, which is why the system currently requires a login mechanism. This setup ensures that each user's settings and preferences are saved and secure. By logging in, you'll have a personalized experience tailored to your needs. We appreciate your understanding and cooperation as we continue to enhance our system for better functionality and user experience.
+                        </p>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+    
+    <script>
+    $(document).ready(function () {
+            setMenuActive('login');
+        });
+    </script>
+}
+

@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+ @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Account</span>
+        </li>
+    }
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="menu-item" id="menu-item-account">
+            <a class="menu-link" asp-area="Identity" asp-page="/Account/Manage/Index">
+                <i class="menu-icon fa-solid fa-user"></i>
+                <div data-i18n="Account">My Account</div>
+            </a>
+        </li>
+        <li class="menu-item" id="menu-item-logout">
+            <a class="menu-link" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <i class="menu-icon fa-solid fa-power-off"></i>
+                <div data-i18n="Account">Logout</div>
+            </a>
+        </li>
+    }
+    else
+    {
+        <li class="menu-item" id="menu-item-login">
+            <a class="menu-link" asp-area="Identity" asp-page="/Account/Login">
+                <i class="menu-icon fa-solid fa-user"></i>
+                <div data-i18n="Account">Login</div>
+            </a>
+        </li>
+        <li class="menu-item" id="menu-item-register">
+            <a class="menu-link" asp-area="Identity" asp-page="/Account/Register">
+                <i class="menu-icon fa-solid fa-user-plus"></i>
+                <div data-i18n="Account">Register</div>
+            </a>
+        </li>
+    }

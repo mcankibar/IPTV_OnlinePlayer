@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPTvOnlinePlayer", "IPTvOnlinePlayer\IPTvOnlinePlayer.csproj", "{BF7D6917-36B2-4C77-AEC7-017603BE4CB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPTvOnlinePlayer.Test", "IPTvOnlinePlayer.Test\IPTvOnlinePlayer.Test.csproj", "{E461182B-F223-4DF7-B48A-5DCE6DE01052}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF7D6917-36B2-4C77-AEC7-017603BE4CB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF7D6917-36B2-4C77-AEC7-017603BE4CB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF7D6917-36B2-4C77-AEC7-017603BE4CB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF7D6917-36B2-4C77-AEC7-017603BE4CB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E461182B-F223-4DF7-B48A-5DCE6DE01052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E461182B-F223-4DF7-B48A-5DCE6DE01052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E461182B-F223-4DF7-B48A-5DCE6DE01052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E461182B-F223-4DF7-B48A-5DCE6DE01052}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
